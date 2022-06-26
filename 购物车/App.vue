@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <MyHeader title="购物车案例" background="gold" />
+    <MyHeader title="购物车案例" background="pink" color="red" />
     <MyGoods v-for="item in goodslist" :key="item.goods_id" :goods="item" />
     <MyFooter :goodslist="goodslist" />
   </div>
@@ -8,14 +8,14 @@
 
 <script>
 import MyHeader from '#/MyHeader.vue'
-import MyGoods from '#/MyGoods.vue'
 import MyFooter from '#/MyFooter.vue'
+import MyGoods from '#/MyGoods.vue'
 import axios from 'axios'
 export default {
   components: {
     MyHeader,
-    MyGoods,
-    MyFooter
+    MyFooter,
+    MyGoods
   },
   data() {
     return {
@@ -23,11 +23,12 @@ export default {
     }
   },
   created() {
-    this.getList()
+    this.getGoods()
   },
   methods: {
-    async getList() {
-      const res = await axios({ url: '/api/cart' })
+    async getGoods() {
+      const res = await axios({ url: '/api/cart ' })
+      // console.log(res.data.list)
       this.goodslist = res.data.list
     }
   }
